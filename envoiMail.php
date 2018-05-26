@@ -1,5 +1,6 @@
 <?php
-$mail = 'yohann.demora@gmail.com'; // Déclaration de l'adresse de destination.
+session_start(); 
+$mail = $_SESSION["mail"]; // récupération de l'adresse mail en session.
 if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 {
 	$passage_ligne = "\r\n";
@@ -9,8 +10,26 @@ else
 	$passage_ligne = "\n";
 }
 //=====Déclaration des messages au format texte et au format HTML.
-$message_txt = "Et bim!!! je t'envoye ce mail sans passer par une appli mais en tapant le code avec mes petites mains. Par contre pour le lien de validation le .htaccess va poser pb je pense enfin on verra lundi.Bon dimanche et bonne fête maman lol";
-$message_html = "<html><head></head><body><b>Et bim</b>,je t'envoyer ce mail sans passer par une appli mais en tapant le code avec mes petites mains.<br> C'est pour le script du forum je suis <strong> BON </strong> ou <strong> TRES BON</strong>.<br>Par contre pour le lien de validation le .htaccess va poser pb je pense enfin on verra lundi.Bon dimanche et bonne fête maman lol <</body></html>";
+$message_txt = 'Bienvenue sur test_validation_mail,
+ 
+Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+ou copier/coller dans votre navigateur internet.
+ 
+http://votresite.com/activation.php?log='.urlencode($_SESSION['pseudo']).'&cle='.urlencode($_SESSION['cle']).'
+ 
+ 
+---------------
+Ceci est un mail automatique, Merci de ne pas y répondre.';
+$message_html = "<html><head><body>Bienvenue sur test_validation_mail,
+ 
+Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+ou copier/coller dans votre navigateur internet.
+ 
+http://localhost/test_validation_mail/activation.php?pse=".urlencode($_SESSION["pseudo"])."&cle=".urlencode($_SESSION["cle"])."'
+ 
+ 
+---------------
+Ceci est un mail automatique, Merci de ne pas y répondre.'</body></html>";
 //==========
  
 //=====Création de la boundary
@@ -18,7 +37,7 @@ $boundary = "-----=".md5(rand());
 //==========
  
 //=====Définition du sujet.
-$sujet = "Et bim !";
+$sujet = "validation";
 //=========
  
 //=====Création du header de l'e-mail.
@@ -47,5 +66,6 @@ $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
  
 //=====Envoi de l'e-mail.
 mail($mail,$sujet,$message,$header);
+echo "mail envoyé";
 //==========
 ?>
