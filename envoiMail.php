@@ -1,5 +1,5 @@
 <?php
-$mail = 'cindyroussel@laposte.net'; // Déclaration de l'adresse de destination.
+$mail = 'yohann.demora@gmail.com'; // Déclaration de l'adresse de destination.
 if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 {
 	$passage_ligne = "\r\n";
@@ -9,8 +9,8 @@ else
 	$passage_ligne = "\n";
 }
 //=====Déclaration des messages au format texte et au format HTML.
-$message_txt = "Et ma zamour je viens de t'envoyer ce mail sans passer par une appli mais en tapant le code avec mes petites mains.";
-$message_html = "<html><head></head><body><b>Et ma zamour</b>,je viens de t'envoyer ce mail sans passer par une appli mais en tapant le code avec mes petites mains.</body></html>";
+$message_txt = "Et bim!!! je t'envoye ce mail sans passer par une appli mais en tapant le code avec mes petites mains. Par contre pour le lien de validation le .htaccess va poser pb je pense enfin on verra lundi.Bon dimanche et bonne fête maman lol";
+$message_html = "<html><head></head><body><b>Et bim</b>,je t'envoyer ce mail sans passer par une appli mais en tapant le code avec mes petites mains.<br> C'est pour le script du forum je suis <strong> BON </strong> ou <strong> TRES BON</strong>.<br>Par contre pour le lien de validation le .htaccess va poser pb je pense enfin on verra lundi.Bon dimanche et bonne fête maman lol <</body></html>";
 //==========
  
 //=====Création de la boundary
@@ -18,7 +18,7 @@ $boundary = "-----=".md5(rand());
 //==========
  
 //=====Définition du sujet.
-$sujet = "Coucou ma zamour !";
+$sujet = "Et bim !";
 //=========
  
 //=====Création du header de l'e-mail.
